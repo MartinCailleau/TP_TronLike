@@ -1,0 +1,15 @@
+Créer un jeu "Tron Light Cycle"
+
+- controle d'une moto
+	- Utiliser un character controller
+	- Le point de rotation de la moto doit être à l'avant.
+	- La moto ne doit pas pouvoir reculer.
+- faire suivre la camera
+- Ajouter une trail
+- Detecter la collision d'une moto dans une trail
+- Explosion d'une moto (VFX + SFX)
+- Sond design
+- Multijoueur en ecran splitté
+- Boucle de jeu
+- Scoring
+- UI

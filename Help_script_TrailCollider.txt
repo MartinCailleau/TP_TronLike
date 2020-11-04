@@ -1,0 +1,22 @@
+﻿Aide pour le script TrailCollider.
+______________________________________________________________________________________
+
+1ere étape : 
+- On doit créer une liste de points (Vector3).
+- On doit y ajouter un nouveau point dès que le player a parcouru une certaine distance.
+(vous pouvez utiliser la fonction Vector3.Distance(dernier point du tableau, position actuelle))
+
+2eme étape :
+- On doit créer un algorithme pour detecter les collisions (checkCollision).
+- Pour cela, on va lancer un linecast entre chaques points(segments) de la liste de points.
+- Si un linecast percute un collider, on verifie que c'est un player, et on lance une coroutine de destruction 
+(Mettez un Debug.Log("Collision detected") dans un premier temps).
+
+3eme étape : 
+- On lance la fonction checkCollision seulement tout les 100 millisecondes 
+grace à une condition et une variable timer dans la boucle Update.
+
+4eme étape : 
+- Créer la coroutine de destruction.
+- Instancier un VFX d'explosion.
+- Faire disparaitre le player en question.  

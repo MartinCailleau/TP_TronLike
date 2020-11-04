@@ -1,0 +1,25 @@
+Aide pour le script de controle du player.
+______________________________________________________________________________________
+
+Pour déplacer votre player utilisez la fonction Move : 
+
+	GetComponent<CharacterController>().Move(votre vecteur de mouvement calculé);
+_______________________________________________________________________________________________________________________
+
+Pour faire tourner votre player utilisez la fonction RotateAround(le point de pivot passé en paramètre public, ....)	
+_______________________________________________________________________________________________________________________
+
+Pour calculer votre vecteur de mouvement et la rotation, vous devez utiliser le système d'input : 
+	Input.GetAxis(....)
+_______________________________________________________________________________________________________________________
+
+Pour empecher à la marche arrière vous pouvez utiliser la fonction Mathf.Clamp01(...)
+_______________________________________________________________________________________________________________________
+
+Pour faire passer un vecteur de l'espace global à local utilisez ce genre de fonction : 
+	
+	transform.TransformVector(monVecteur);
+_______________________________________________________________________________________________________________________
+
+Pour améliorer le controle vous pouvez rendre le pour smooth en utiliser des fonction d'interpolation comme 
+Vector3.Lerp(...) pour le déplacement et Mathf.Lerp(...) pour la rotation.
