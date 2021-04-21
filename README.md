@@ -19,7 +19,10 @@ Objectif : Créer un jeu "Tron Light Cycle"
 
 # Step 1
 ## Presentation de la structure du gameObject player :
-![alt text](presentation player - viewport)
-![alt text](presentation player - inspecteur)
-![alt text](presentation player - hierarchie)
+
+![image](/img/player_in_viewport.png)
+
+![image](/img/player_inspector.png)
+
+![image](/img/player_hierarchie.png)
 # Contrôle du vehicule
