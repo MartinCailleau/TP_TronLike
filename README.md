@@ -84,24 +84,45 @@ Vector3.Lerp(...) pour le déplacement et Mathf.Lerp(...) pour la rotation.
 Pour cette fonctionnalité, pas le choix il faut la coder.
 Vous Allez donc créer un script **TrailCollider**
 
-- Les étapes pour programmer ce script : 
+- Les étapes pour programmer le script TrailCollider : 
     - 1ere étape : 
         - On doit créer une liste de points (Vector3).
-        - On doit y ajouter un nouveau point dès que le player a parcouru une certaine distance.
-            (vous pouvez utiliser la fonction Vector3.Distance(dernier point du tableau, position actuelle))
+        ![](https://i.imgur.com/T4KiVnK.png)
+            - Ajouter y un premier point : la position actuelle du joueur "transform.position"
+
+        - On doit y ajouter un nouveau point dès que le player a parcouru une certaine distance. ![](https://i.imgur.com/GlmSXHc.png)
+            - vous pouvez utiliser la fonction Vector3.Distance(dernier point de la liste, position actuelle))
+            - La propriété Count d'une liste donne sa taille. Le dernier index est donc sa taille - 1 "maListe.Count-1".
+            - N'oubliez pas de déclarer la variable float minDistance.
     
     - 2eme étape :
         - On doit créer un algorithme pour detecter les collisions (checkCollision).
-        - Pour cela, on va lancer un linecast entre chaques points(segments) de la liste de points.
-        - Si un linecast percute un collider, on verifie que c'est un player, et on lance une coroutine de destruction 
+        - Pour cela, on va lancer un linecast entre chaques points(segments) de la liste de points. Voici comment utiliser un linecast : https://docs.unity3d.com/ScriptReference/Physics.Linecast.html
+        - Faites une boucle for pour parcourir l'ensemble des points de la liste.
+        - Si un linecast percute un collider, on verifie que c'est un player, et on lance une fonction de destruction du vehicule
             (Mettez un Debug.Log("Collision detected") dans un premier temps).
+            ![](https://i.imgur.com/aI0fT16.png)
+
 
     - 3eme étape : 
         - On lance la fonction checkCollision seulement tout les 100 millisecondes 
-            grace à une condition et une variable timer dans la boucle Update.
+            grace à une condition et une variable chrono dans la boucle FixedUpdate.![](https://i.imgur.com/bySPMZk.png)
+
+
 
     - 4eme étape : 
-        - Créer la coroutine de destruction.
+        - Créer une fonction  void destruction(GameObject vehiculeToDestroy)
         - Instancier un VFX d'explosion.
-        - Faire disparaitre le player en question. 
+        - Faire disparaitre le player en question. vehiculeToDestroy.setActive(false)
+        ![](https://i.imgur.com/uf5nb8I.png) 
+            - En parametre d'entré, on met l'objet à detruire.
+            - On ne détruit pas réelement le vehicule, mais on le rend invisible. Pour simplifier sa réaparition à la prochaine manche.
+            - Le 2eme parametre de la fonction destroy est un delay. L'explosion sera détruite dans 3 secondes.
 
+    - 5eme étape: Appeler la fonction destruction dans checkCollision.
+        
+        - La fonction destruction demande en parametre l'objet à détruire. ici ce sera l'objet qui a été percuté par un linecast. Avec le code actuel nous ne recuperons pas l'objet percuté. Nous allons modifier le lancement du linecast pour cela. Nous devons y ajouter un 3eme parametre. Ce sera un parametre de sortie "out". Nous devons aussi déclarer une nouvelle variable globale de type RaycastHit pour stocker le resultat du linecast.
+        
+            ![](https://i.imgur.com/pUWACsu.png)
+
+            ![](https://i.imgur.com/r4NQToo.png)
